@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<style>
+		#forRowspan {
+  			border-collapse:collapse;
+  			border:1px solid black;
+		}
+  
+		#forRowspan th, #forRowspan td {
+  			border:1px solid gray;
+		}
+	</style>
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script>
+		$(function(){
+    			$('#forRowspan').each(function() {
+        			var table = this;
+        			$.each([1,2] /* 합칠 칸 번호 */, function(c, v) {
+            				var tds = $('>tbody>tr>td:nth-child(' + v + ')', table).toArray();
+            				var i = 0, j = 0;
+            				for(j = 1; j < tds.length; j ++) {
+                				if(tds[i].innerHTML != tds[j].innerHTML) {
+                    					$(tds[i]).attr('rowspan', j - i);
+                    					i = j;
+                    					continue;
+                				}
+                				$(tds[j]).hide();
+            				}
+            				j --;
+            				if(tds[i].innerHTML == tds[j].innerHTML) {
+                				$(tds[i]).attr('rowspan', j - i + 1);
+            				}
+        			});
+    			});
+		});
+	</script>
+	<meta charset="UTF-8">
+	<title></title>
+	</head>
+	<body>
+        <table id="forRowspan">
+	    <tr><td colspan="6"><a href="/">top</a></td>
+	    </tr>
+            {% for item in data %}
+            <tr>
+		<!--td>{{item['num']}}</td-->
+		<!--td>{{item['src']}}</td-->
+		<td>집계: {{item['update_date']}}</td>
+		{% if item['kind'] == '1' %}
+			<td>추천수</td>
+		{% elif item['kind'] == '2' %}
+			<td>평점(현재상영)</td>
+		{% else %}
+			<td>평점(모든영화)</td>
+		{% endif %}
+		<td>{{item['ranking']}} 위</td>
+		<td>{{item['title']}}</td>
+		{% if item['kind'] != '1' %}
+		<td>{{item['point']}}</td>
+		{% else %}
+		<td>&nbsp;</td>
+		{% endif %}
+		<td>{{item['variance']}}</td>
+		<!--td>{{item['posted']}}</td-->
+            </tr>
+	    {% endfor %}
+	</table>
+	</body>
+</html>

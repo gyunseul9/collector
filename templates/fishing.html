@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<meta charset="UTF-8">
+	<title></title>
+	</head>
+	<body>
+        <table border="1">
+	    <tr><td><a href="/">top</a></td>
+	    </tr>
+            {% for item in data %}
+            <tr>
+                <td>
+			번호: {{item['num']}}<br>
+			출처: {{item['src']}}<br>
+			색인: {{item['seq']}}<br>
+			권역: {{item['area']}}<br>
+			제목: {{item['title']}}<br>
+			사진: {{item['image']}}<br>
+			내용: {{item['contents']}}<br>
+			등록: {{item['rdate']}}<br>
+			기록: {{item['posted']}}<br>
+		</td>
+            </tr>
+	    {% endfor %}
+	</table>
+	</body>
+</html>

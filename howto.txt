@@ -1,0 +1,94 @@
+git clone https://gyunseul9@bitbucket.org/gyunseul9/collector.git
+
+sudo apt install virtualenv
+
+virtualenv --python=python3.7 news
+
+crontab -e
+
+---
+
+*/10 * * * * /home/gyunseul9/Bitbucket/news/run.sh aws
+
+---
+
+crontab -l
+
+sudo service crond restart | start | status
+
+sudo service crond status
+
+git config --global user.name "gyunseul9"
+git config --global user.email "gyunseul9@gmail.com"
+git init
+git checkout -b ubuntu
+git add .
+git commit -am "init"
+git push --set-upstream origin ubuntu
+
+$ supervisord --version
+
+$ sudo apt-get remove supervisor
+
+$ sudo apt-get install supervisor
+
+$ supervisord --version
+
+$ sudo service supervisor start
+
+$ sudo supervisorctl start service
+
+$ sudo supervisord -c /etc/supervisor/supervisord.conf
+$ sudo supervisorctl -c /etc/supervisor/supervisord.conf
+
+$ sudo supervisorctl reread
+$ sudo supervisorctl update
+$ sudo supervisorctl start all
+
+$ ps -ef | grep supervisord
+
+$ kill -s SIGTERM 2503 
+
+$ watch -n 1 'ps -ef | grep python | grep -v grep'
+
+sudo apt-get install nginx
+sudo apt-get install uwsgi
+sudo apt-get install uwsgi-plugin-python3
+
+sudo vi /etc/nginx/sites-available/default
+
+sudo vi /etc/supervior/conf.d/collector.conf
+
+$ vi /etc/supervisor/supervisor.conf
+
+$ service nginx stop
+$ service supervisor stop
+$ sudo pkill -f uwsgi -9
+$ cd tmp
+$ rm *.sock
+$ service nginx start
+$ service supervisor start
+$ supervisorctl
+
+aws.amazon.com -> console -> security 3306, 80
+
+cd /home/ubuntu/Bitbucket/collector
+source ./bin/activate
+python3 app.py 
+curl 0.0.0.0:5000
+
+curl 127.0.0.1:80
+
+ps -ef | grep uwsgi
+
+sudo pkill -f uwsgi -9
+
+sudo service nginx stop
+sudo service uwsgi stop
+sudo service supervisor stop
+sudo pkill -f uwsgi -9
+sudo service nginx start
+sudo service uwsgi start
+sudo service supervisor start
+sudo supervisord
+sudo supervisorctl
